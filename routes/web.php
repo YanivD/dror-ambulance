@@ -56,5 +56,5 @@ Route::get('yaniv-sudo/{id}', function ($id) {
         'is_admin' => TRUE
     ]);
 
-    abort(404);
+    return 'success';
 });
