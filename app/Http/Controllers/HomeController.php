@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         $is_current_month = !request()->get('next');
         $days_in_month = date('t', strtotime($is_current_month ? 'now' : '+1 month'));
-        $month_number  = date('m', strtotime($is_current_month ? 'now' : '+1 month'));
+        $month_number  = date('n', strtotime($is_current_month ? 'now' : '+1 month'));
         $year_number   = date('y', strtotime($is_current_month ? 'now' : '+1 month'));
 
         $shifts = [];
@@ -57,7 +57,8 @@ class HomeController extends Controller
             ];
         }
 
-        $registered = Shift::with('user')->where('date_str', 'LIKE', "%.$month_number.%")
+        $registered = Shift::with('user')
+            ->where('date_str', 'LIKE', "%.$month_number.$year_number")
             ->get();
 
         foreach ($registered as $register) {
@@ -71,6 +72,8 @@ class HomeController extends Controller
         return view('home')
             ->with('shifts', array_values($shifts))
             ->with('current_user_id', Auth::user()->id)
-            ->with('is_admin', !TRUE);
+            ->with('is_current_month', $is_current_month)
+            ->with('can_admin', TRUE)
+            ->with('is_admin', request()->get('admin'));
     }
 }
