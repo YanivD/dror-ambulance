@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ \Illuminate\Support\Facades\Auth::user() ? 'סידור אמבולנס - דרור' : 'מרחב דרור' }}</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -19,31 +19,6 @@
         body {
             font-family: 'Alef', sans-serif;
         }
-
-        .popover {
-            direction: rtl;
-            -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
-            -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
-            -o-transform: matrix(-1, 0, 0, 1, 0, 0);
-            transform: matrix(-1, 0, 0, 1, 0, 0);
-        }
-
-
-        .popover-title {
-            -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
-            -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
-            -o-transform: matrix(-1, 0, 0, 1, 0, 0);
-            transform: matrix(-1, 0, 0, 1, 0, 0);
-        }
-
-        .popover-content {
-            -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
-            -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
-            -o-transform: matrix(-1, 0, 0, 1, 0, 0);
-            transform: matrix(-1, 0, 0, 1, 0, 0);
-        }
-
-
     </style>
     <!-- Scripts -->
     <script>
