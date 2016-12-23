@@ -28,10 +28,10 @@ Route::get('shift-change', function () {
 });
 
 Route::get('shift-add', function () {
-    if (\Illuminate\Support\Facades\Auth::user())
+    if (!\Illuminate\Support\Facades\Auth::user())
         abort(404);
 
-    \App\Shift::create([
+    \App\Shift::firstOrCreate([
         'user_id'  => \Illuminate\Support\Facades\Auth::user()->id,
         'shift_id' => (int)request()->get('shift'),
         'date_str' => request()->get('date'),
@@ -41,6 +41,9 @@ Route::get('shift-add', function () {
 
 Route::get('delete-user/{id}', function ($id) {
     if (! \Illuminate\Support\Facades\Auth::user() || \Illuminate\Support\Facades\Auth::user()->is_admin == FALSE)
+        abort(404);
+
+    if (\Illuminate\Support\Facades\Auth::user()->id == $id)
         abort(404);
 
     \App\User::findOrFail($id)->delete();

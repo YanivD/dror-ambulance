@@ -125,7 +125,9 @@
                                     </td>
                                     <td class="text-left">{{ $user->phone }}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-xs btn-danger" href="delete-user/{{ $user->id }}" onclick="return confirm('הזהר! אתה באמת רוצה למחוק את המשתמש הזה?');">מחק</a>
+                                        @if ($user->id != \Illuminate\Support\Facades\Auth::user()->id)
+                                            <a class="btn btn-xs btn-danger" href="delete-user/{{ $user->id }}" onclick="return confirm('הזהר! אתה באמת רוצה למחוק את המשתמש הזה?');">מחק</a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

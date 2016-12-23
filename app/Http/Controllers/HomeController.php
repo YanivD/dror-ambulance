@@ -66,7 +66,7 @@ class HomeController extends Controller
             $shifts[$register['date_str']]['shift'.$register['shift_id']]['users'][] = [
                 'user_id' => $register['user_id'],
                 'status'  => $register['status'],
-                'name'    => $register['user']['name'],
+                'name'    => array_get($register, 'user.name', 'משתמש נמחק'),
             ];
         }
 
