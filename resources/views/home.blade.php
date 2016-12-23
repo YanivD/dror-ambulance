@@ -25,7 +25,7 @@
                 <div class="panel-body">
                     @if ($can_admin)
                         @if ($is_admin)
-                            <a href="/?next={{ (int) $is_current_month }}" class="btn btn-primary">מעבר לתצוגה רגילה</a><br /><br />
+                            <a href="/?next={{ (int) !$is_current_month }}" class="btn btn-primary">מעבר לתצוגה רגילה</a><br /><br />
                         @else
                             <a href="/?admin=1&next={{ (int) !$is_current_month }}" class="btn btn-primary">
                                 <i class="fa fa-cog"></i>
