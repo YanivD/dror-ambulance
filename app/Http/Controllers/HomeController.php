@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Shift;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -69,11 +70,14 @@ class HomeController extends Controller
             ];
         }
 
+        $is_admin = request()->get('admin') && Auth::user()->is_admin;
+
         return view('home')
             ->with('shifts', array_values($shifts))
             ->with('current_user_id', Auth::user()->id)
             ->with('is_current_month', $is_current_month)
-            ->with('can_admin', TRUE)
-            ->with('is_admin', request()->get('admin'));
+            ->with('can_admin', Auth::user()->is_admin)
+            ->with('users', $is_admin ? User::orderBy('name')->get() : [])
+            ->with('is_admin', $is_admin);
     }
 }

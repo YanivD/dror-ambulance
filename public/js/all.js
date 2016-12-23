@@ -40,14 +40,15 @@ $(document).ready(function() {
             var shiftId   = $(this).hasClass('shift1') ? '1' : ($(this).hasClass('shift2') ? '2' : '3');
 
             bootbox.confirm({
-                message: "מעוניין להרשם למשמרת "+shiftText+" "+date+"?",
+                message: "רצית להרשם למשמרת<b> "+shiftText+" "+date+"</b> ?",
+                title: "הרשמה למשמרת",
                 buttons: {
                     confirm: {
                         label: 'הרשם למשמרת',
                         className: 'btn-success'
                     },
                     cancel: {
-                        label: 'לא משנה',
+                        label: 'לא',
                         className: 'btn-danger'
                     }
                 },
@@ -67,6 +68,9 @@ $(document).ready(function() {
                             success: function () {
                                 // btn.removeClass(toStatus ? 'btn-danger' : 'btn-success')
                                 //     .addClass(toStatus ? 'btn-success' : 'btn-danger');
+
+                                // alert('שגיאה בשמירת נתונים');
+                                location.reload();
                             },
                             error: function () {
                                 alert('שגיאה בשמירת נתונים');
